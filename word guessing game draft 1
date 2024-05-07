@@ -66,3 +66,16 @@ def main():
 
 if __name__ == "__main__":
     main()
+Summary:
+- Added word bank for the game
+- Added introduction to the game
+- Added a random word picker
+- Added a display to show how many letters there are in the word
+- Allow for only alphabetical lowercase letters to be inputs for guesses
+- Added an indicator for when a word is guessed 
+- Added an indicator of how many attempts are left
+- Added an indicator if the guess was correct or not 
+Needed fixes:
+- Add the option to set the number of players
+- Add the option of guessing the word
+- Remove the underscores to not show players the positions of the letters
