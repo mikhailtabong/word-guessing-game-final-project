@@ -78,10 +78,6 @@ def play_game(player_count):
             else:
                 print("Invalid input. Please enter a single letter or guess the entire word.")
 
-            if attempts > 0:
-                input("Press Enter to pass the turn to the next player...")
-                print("\n" * 50)  
-
 def main():
     while True:
         try:
@@ -99,10 +95,9 @@ if __name__ == "__main__":
 Summary:
 - Added an option to choose between 1-4 players at the beginning of the program
 - Added the feature of taking turns after guessing a letter in the word
-- Added an indicators of how many times a letter occurs in the word and how many attempts a player still has
-- Added an input to make the screen clear so that players can see previous answers
+- Added indicators of how many times a letter occurs in the word and how many attempts a player still has
 Needed fixes:
 - Removal of the underscores indicating the placement of the letter in the word
 - Need to add a word guess after guessing a letter
-- Need to display the the final score after the game is finished
+- Need to display the final score after the game is finished
 - Need to add a way to indicate to players what the theme of the word bank is
