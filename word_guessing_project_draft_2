@@ -1,0 +1,108 @@
+import random
+
+word_bank = [
+    "viola", "banjo", "cello", "drum", "euphonium", "flute",
+    "guitar", "harp", "violin", "trombone", "trumpet", "saxophone",
+    "clarinet", "piano", "harmonica", "ukulele", "mandolin", "oboe",
+    "xylophone", "bagpipes", "bassoon", "didgeridoo", "dulcimer",
+    "fiddle", "marimba", "clarineo", "timpani", "synthesizer", "theremin",
+    "zither", "accordion", "tabla", "bongo", "chimes", "conga", "digeridoo",
+    "maracas", "panpipe", "sitar", "tambourine", "tuba", "accordion",
+    "balalaika", "bouzouki", "djembe", "flugelhorn", "glockenspiel",
+    "kazoo", "lute", "lyre", "melodica", "ocarina", "shamisen", "sitar",
+    "vibraphone", "washboard", "whistle", "zurna"
+]
+
+def choose_word():
+    return random.choice(word_bank)
+
+def display_word(word, guessed_letters):
+    display = ""
+    for letter in word:
+        if letter in guessed_letters:
+            display += letter
+        else:
+            display += "_"
+    return display
+
+def play_game(player_count):
+    print("Welcome to the Word Guessing Game!")
+    print("Guess the secret word by entering one letter at a time or guess the word.")
+    print("Each player will take turns guessing.")
+    print("You have 3 attempts per turn. Let's begin!\n")
+
+    secret_word = choose_word()
+    guessed_letters = []
+
+    player_stats = {player: {"letter_guesses": 0, "word_guesses": 0} for player in range(1, player_count + 1)}
+
+    current_player = 0
+    while True:
+        current_player = (current_player % player_count) + 1
+        print("Player", current_player, ", it's your turn.")
+
+        attempts = 3
+        while attempts > 0:
+            print("Word:", display_word(secret_word, guessed_letters))
+            guess = input("Enter a letter or guess the word: ").lower()
+
+            if len(guess) == 1 and guess.isalpha():
+                player_stats[current_player]["letter_guesses"] += 1
+                if guess in guessed_letters:
+                    print("You've already guessed that letter.")
+                    continue
+                guessed_letters.append(guess)
+
+                if guess in secret_word:
+                    occurrences = secret_word.count(guess)
+                    print(f"Good guess! The letter '{guess}' occurs {occurrences} time(s) in the word.")
+                else:
+                    print("Incorrect guess.")
+                attempts -= 1
+                print("Attempts left:", attempts)
+
+                if "_" not in display_word(secret_word, guessed_letters):
+                    print("\nCongratulations, Player", current_player, "! You guessed the word:", secret_word)
+                    print("Player", current_player, "took", player_stats[current_player]["letter_guesses"], "letter guesses and", player_stats[current_player]["word_guesses"], "word guesses.")
+                    return
+            elif len(guess) == len(secret_word) and guess.isalpha():
+                player_stats[current_player]["word_guesses"] += 1
+                if guess == secret_word:
+                    print("\nCongratulations, Player", current_player, "! You guessed the word:", secret_word)
+                    print("Player", current_player, "took", player_stats[current_player]["letter_guesses"], "letter guesses and", player_stats[current_player]["word_guesses"], "word guesses.")
+                    return
+                else:
+                    print("Incorrect guess.")
+                    attempts -= 1
+                    print("Attempts left:", attempts)
+            else:
+                print("Invalid input. Please enter a single letter or guess the entire word.")
+
+            if attempts > 0:
+                input("Press Enter to pass the turn to the next player...")
+                print("\n" * 50)  
+
+def main():
+    while True:
+        try:
+            player_count = int(input("Enter the number of players (1-4): "))
+            if player_count < 1 or player_count > 4:
+                raise ValueError
+            break
+        except ValueError:
+            print("Please enter a number between 1 and 4.")
+
+    play_game(player_count)
+
+if __name__ == "__main__":
+    main()
+Summary:
+- Added an option to choose between 1-4 players at the beginning of the program
+- Added the feature of taking turns after guessing a letter in the word
+- Added an indicators of how many times a letter occurs in the word and how many attempts a player still has
+- Added an input to make the screen clear so that players can see previous answers
+Needed fixes:
+- Removal of the underscores indicating the placement of the letter in the word
+- Need to add a word guess after guessing a letter
+- Need to display the the final score after the game is finished
+- Need to add a way to indicate to players what the theme of the word bank is
