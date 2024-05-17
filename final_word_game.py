@@ -1,3 +1,6 @@
+# Serena: Don't forget to include your License.txt file!
+# I also recommend adding more comments throughout your code, particularly comments that explain different sections of the code for easier readability
+
 import random
 
 word_bank = [
