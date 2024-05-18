@@ -1,3 +1,6 @@
+# Serena: Don't forget to include your License.txt file!
+# I also recommend adding more comments throughout your code, particularly comments that explain different sections of the code for easier readability
+
 import random
 
 word_bank = [
@@ -69,6 +72,8 @@ def play_game(player_count):
                     attempts -= 1
             else:
                 print("Invalid input. Please enter a single letter or guess the entire word.")
+                # Serena: You could add another 'continue' here so that the code will skip the rest of the loop and prompt the player for input again.
+                # That way the game doesn't consume an attempt for an invalid input
 
             print()
 
