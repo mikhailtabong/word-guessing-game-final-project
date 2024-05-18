@@ -42,4 +42,4 @@ The word bank is themed around musical instruments. Try to guess the instrument 
 
 - **Clear Instructions**: Detailed instructions are provided at the beginning of the game, making it easy for players to understand how to play.
 
-Enjoy the game and have fun with the game!
+Enjoy the game and have fun with the game! Special thanks to Serena Alamina for her help!
